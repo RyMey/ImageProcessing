@@ -6,10 +6,8 @@ Mat negative(Mat source){
 
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++){
-            Vec3b temp = result.at<Vec3b>(i,j);
-            for(int k=0;k<3;k++){
-                result.at<Vec3b>(i, j).val[k] = 255 - (int) temp.val[k];
-            }
+            int value = (int) result.at<uchar>(i,j);
+            result.at<uchar>(i,j) = 255 - value;
         }
     }
 
