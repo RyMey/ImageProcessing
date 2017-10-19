@@ -37,35 +37,41 @@ Mat cropSubtract(Mat source,Mat object){
     return result;
 }
 
-Mat cropRectangle(Mat source){
+Mat cropThreshold(Mat source,int th){
     Mat result;
     int width = source.size().width;
     int height = source.size().height;
     int minX=width,maxX=0,minY=height,maxY=0;
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++){
-            Scalar temp = source.at<uchar>(i,j);
-            if(temp.val[0]!=0 && j<minX){
-                minX = j;
-            }else if(temp.val[0]!=0 && j>maxX ){
-                maxX = j;
-            }else if(temp.val[0]!=0 && i<minY){
-                minY = i;
-            }else if(temp.val[0]!=0 && i>maxY){
-                maxY = i;
+            Vec3b temp = source.at<Vec3b>(i,j);
+            for(int k=0;k<3;k++){
+                if(temp.val[k]!=th && j<minX){
+                    minX = j;
+                }else if(temp.val[k]!=th && j>maxX ){
+                    maxX = j;
+                }else if(temp.val[k]!=th && i<minY){
+                    minY = i;
+                }else if(temp.val[k]!=th && i>maxY){
+                    maxY = i;
+                }
             }
+
         }
     }
-    cout<<minX<<" "<<maxX<<" "<<minY<<" "<<maxY<<endl;
-    cout<<width<<" "<<height<<" "<<source.size()<<endl;
+//    cout<<minX<<" "<<maxX<<" "<<minY<<" "<<maxY<<endl;
+//    cout<<width<<" "<<height<<" "<<source.size()<<endl;
 
-    result = Mat(maxY,maxX, CV_64F, double(0));
+    result = Mat(maxY-minY+1,maxX-minX+1, source.type());
+    int rwidth = result.size().width;
+    int rheight = result.size().height;
 
-    for(int i=minY;i<=maxY;i++){
-        for(int j=minX;j<=maxX;j++){
-             for(int k=0;k<3;k++){
-                result.at<Vec3b>(i,j)[k]=source.at<Vec3b>(i,j)[k];
-             }
+    for(int i=0;i<rheight;i++){
+        for(int j=0;j<rwidth;j++){
+            for(int k=0;k<3;k++){
+                int value = (int) source.at<Vec3b>(minY+i,minX+j).val[k];
+                result.at<Vec3b>(i,j).val[k] = value;
+            }
         }
     }
 
