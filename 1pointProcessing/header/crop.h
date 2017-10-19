@@ -1,8 +1,6 @@
-Mat cropSilhouette(Mat source){
-    Mat result,object;
-    object = imread("picture/rya.jpg",0);
-
-    result = source;
+Mat cropSilhouette(Mat source,Mat object){
+    Mat result;
+    result = source.clone();
     int width = source.size().width;
     int height = source.size().height;
 
@@ -17,11 +15,9 @@ Mat cropSilhouette(Mat source){
     return result;
 }
 
-Mat cropSubtract(Mat source){
-    Mat result,object;
-    object = imread("picture/rya.jpg",0);
-
-    result = source;
+Mat cropSubtract(Mat source, Mat object){
+    Mat result;
+    result = source.clone();
     int width = source.size().width;
     int height = source.size().height;
 
@@ -41,10 +37,4 @@ Mat cropSubtract(Mat source){
     }
 
     return result;
-}
-
-Mat getObject(){
-    Mat object;
-    object = imread("picture/rya.jpg",0);
-    return object;
 }

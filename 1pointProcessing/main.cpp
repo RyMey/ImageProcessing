@@ -52,19 +52,23 @@ int main(){
 
             cout<<"Thank you"<<endl;
         }else if(answer==4){
+            Mat object = imread("picture/rya.jpg",0);
+
             img = imread("picture/4.jpg");
             img2 = img.clone();
             printMat("Before",img);
 
-            img = cropSilhouette(img);
+            img = cropSilhouette(img,object);
             printMat("Crop Silhouette",img);
 
-            img2 = cropSubtract(img2);
+            img2 = cropSubtract(img2,object);
             printMat("Crop Substract",img2);
 
-            printMat("Object",getObject());
+            printMat("Object",object);
 
             cout<<"Thank you"<<endl;
+        }else if(answer==0){
+            break;
         }else{
             cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
 
