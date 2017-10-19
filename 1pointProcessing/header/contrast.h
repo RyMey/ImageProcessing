@@ -1,6 +1,6 @@
 Mat contrast(Mat source){
     Mat result;
-    result = source;
+    result = source.clone();
     int width = source.size().width;
     int height = source.size().height;
     int minContrast = 255;
