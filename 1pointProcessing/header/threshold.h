@@ -10,7 +10,6 @@ Mat thresholdOtsu(Mat source){
 
     Mat result;
     cvtColor(source,result,CV_BGR2GRAY);
-    result = contrast(result);
     int width = result.size().width;
     int height = result.size().height;
     int N = width*height;
