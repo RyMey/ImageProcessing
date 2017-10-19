@@ -8,7 +8,6 @@ Mat contrast(Mat source){
 
     for(int i=0;i<height;i++){
         for(int j=0;j<width;j++){
-            Vec3b temp = source.at<Vec3b>(i,j);
             for(int k=0;k<3;k++){
                 int value = (int) source.at<Vec3b>(i,j).val[k];
                 if(value<minContrast)
