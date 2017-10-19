@@ -4,24 +4,14 @@
 using namespace std;
 using namespace cv;
 
+#include "header/utils.h"
 #include "header/negative.h"
 #include "header/contrast.h"
 #include "header/threshold.h"
 #include "header/crop.h"
 
-printBefore(Mat img){
-    namedWindow("Before",CV_WINDOW_AUTOSIZE);
-    imshow("Before", img);
-}
-
-printAfter(Mat img){
-    namedWindow("After",CV_WINDOW_AUTOSIZE);
-    imshow("After", img);
-}
-
 int main(){
-    Mat img;
-
+    Mat img,img2;
     int answer;
     do{
         cout<<"What do you want?\n\
@@ -35,40 +25,52 @@ int main(){
 
         if(answer==1){
             img = imread("picture/1.png");
-            Mat img2 = img;
-            printBefore(img);
+            img2 = img.clone();
+            printMat("Before",img);
 
             img = threshold(img);
-            namedWindow("128",CV_WINDOW_AUTOSIZE);
-            imshow("128", img);
+            printMat("128",img);
 
             img2 = thresholdOtsu(img2);
-            namedWindow("Otsu",CV_WINDOW_AUTOSIZE);
-            imshow("Otsu", img2);
+            printMat("Otsu",img2);
 
             cout<<"Thank you"<<endl;
         }else if(answer==2){
             img = imread("picture/1.png");
-            printBefore(img);
+            printMat("Before",img);
 
             img = negative(img);
-            printAfter(img);
+            printMat("After",img);
+
             cout<<"Thank you"<<endl;
         }else if(answer==3){
             img = imread("picture/3.jpg");
-            printBefore(img);
+            printMat("Before",img);
 
             img = contrast(img);
-            printAfter(img);
+            printMat("After",img);
+
             cout<<"Thank you"<<endl;
         }else if(answer==4){
             img = imread("picture/4.jpg");
-            printBefore(img);
+            img2 = img.clone();
+            printMat("Before",img);
 
-            img = crop(img);
-            printAfter(img);
+            img = cropSilhouette(img);
+            printMat("Crop Silhouette",img);
+
+            img2 = cropSubtract(img2);
+            printMat("Crop Substract",img2);
+
+            printMat("Object",getObject());
+
             cout<<"Thank you"<<endl;
+        }else{
+            cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
+
         }
+        img.release();
+        img2.release();
         waitKey();
     }while (answer!=0);
     return 0;
