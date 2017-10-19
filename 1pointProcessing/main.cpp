@@ -52,17 +52,23 @@ int main(){
 
             cout<<"Thank you"<<endl;
         }else if(answer==4){
+            Mat object = imread("picture/rya.jpg",0);
             img = imread("picture/4.jpg");
             img2 = img.clone();
-            printMat("Before",img);
+            Mat img3;
+           // printMat("Before",img);
 
-            img = cropSilhouette(img);
-            printMat("Crop Silhouette",img);
+            img = cropSilhouette(img,object);
+           // printMat("Crop Silhouette",img);
+            img3 = img.clone();
 
-            img2 = cropSubtract(img2);
-            printMat("Crop Substract",img2);
+            img2 = cropSubtract(img2,object);
+           // printMat("Crop Substract",img2);
 
-            printMat("Object",getObject());
+            //printMat("Object",object);
+
+            img3 = cropRectangle(img3);
+            printMat("Crop Rectangle",img3);
 
             cout<<"Thank you"<<endl;
         }else{
