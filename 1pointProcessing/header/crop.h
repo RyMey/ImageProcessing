@@ -1,6 +1,5 @@
 Mat cropSilhouette(Mat source,Mat object){
-    Mat result;
-    result = source.clone();
+    Mat result = source.clone();
     int width = source.size().width;
     int height = source.size().height;
 
@@ -15,9 +14,8 @@ Mat cropSilhouette(Mat source,Mat object){
     return result;
 }
 
-Mat cropSubtract(Mat source, Mat object){
-    Mat result;
-    result = source.clone();
+Mat cropSubtract(Mat source,Mat object){
+    Mat result=source.clone();
     int width = source.size().width;
     int height = source.size().height;
 
@@ -32,6 +30,47 @@ Mat cropSubtract(Mat source, Mat object){
                     result.at<Vec3b>(i, j).val[k]=0;
                 else
                     result.at<Vec3b>(i, j).val[k] = temp;
+            }
+        }
+    }
+
+    return result;
+}
+
+Mat cropThreshold(Mat source,int th){
+    Mat result;
+    int width = source.size().width;
+    int height = source.size().height;
+    int minX=width,maxX=0,minY=height,maxY=0;
+    for(int i=0;i<height;i++){
+        for(int j=0;j<width;j++){
+            Vec3b temp = source.at<Vec3b>(i,j);
+            for(int k=0;k<3;k++){
+                if(temp.val[k]!=th && j<minX){
+                    minX = j;
+                }else if(temp.val[k]!=th && j>maxX ){
+                    maxX = j;
+                }else if(temp.val[k]!=th && i<minY){
+                    minY = i;
+                }else if(temp.val[k]!=th && i>maxY){
+                    maxY = i;
+                }
+            }
+
+        }
+    }
+//    cout<<minX<<" "<<maxX<<" "<<minY<<" "<<maxY<<endl;
+//    cout<<width<<" "<<height<<" "<<source.size()<<endl;
+
+    result = Mat(maxY-minY+1,maxX-minX+1, source.type());
+    int rwidth = result.size().width;
+    int rheight = result.size().height;
+
+    for(int i=0;i<rheight;i++){
+        for(int j=0;j<rwidth;j++){
+            for(int k=0;k<3;k++){
+                int value = (int) source.at<Vec3b>(minY+i,minX+j).val[k];
+                result.at<Vec3b>(i,j).val[k] = value;
             }
         }
     }

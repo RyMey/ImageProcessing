@@ -33,46 +33,41 @@ int main(){
 
             img2 = thresholdOtsu(img2);
             printMat("Otsu",img2);
-
-            cout<<"Thank you"<<endl;
         }else if(answer==2){
             img = imread("picture/1.png");
             printMat("Before",img);
 
             img = negative(img);
             printMat("After",img);
-
-            cout<<"Thank you"<<endl;
         }else if(answer==3){
             img = imread("picture/3.jpg");
             printMat("Before",img);
 
             img = contrast(img);
             printMat("After",img);
-
-            cout<<"Thank you"<<endl;
         }else if(answer==4){
             Mat object = imread("picture/rya.jpg",0);
-
             img = imread("picture/4.jpg");
             img2 = img.clone();
+            Mat img3;
             printMat("Before",img);
 
             img = cropSilhouette(img,object);
             printMat("Crop Silhouette",img);
+            img3 = img.clone();
 
             img2 = cropSubtract(img2,object);
             printMat("Crop Substract",img2);
 
             printMat("Object",object);
 
-            cout<<"Thank you"<<endl;
-        }else if(answer==0){
-            break;
+            img3 = cropThreshold(img3,0);
+            printMat("Crop Threshold",img3);
         }else{
             cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
 
         }
+        cout<<"Thank you"<<endl;
         img.release();
         img2.release();
         waitKey();
