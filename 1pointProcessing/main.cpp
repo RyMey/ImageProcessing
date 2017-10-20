@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cv.h>
 #include <highgui.h>
+#include<cmath>
 using namespace std;
 using namespace cv;
 
@@ -9,6 +10,7 @@ using namespace cv;
 #include "header/contrast.h"
 #include "header/threshold.h"
 #include "header/crop.h"
+#include "header/sobel.h"
 
 int main(){
     Mat img,img2;
@@ -33,6 +35,8 @@ int main(){
 
             img2 = thresholdOtsu(img2);
             printMat("Otsu",img2);
+
+            printMat("Sobel",sobel());
         }else if(answer==2){
             img = imread("picture/1.png");
             printMat("Before",img);
