@@ -10,7 +10,6 @@
 #include<cmath>
 using namespace std;
 using namespace cv;
-
 #include "header/utils.h"
 #include "header/negative.h"
 #include "header/contrast.h"
@@ -18,8 +17,108 @@ using namespace cv;
 #include "header/crop.h"
 #include "header/sobel.h"
 
+void faceDetection(){
+    int ans;
+    Mat img;
+    img = imread("picture/1.png");
+    do{
+        cout<<"What do you want?\n\
+        1. 128-Threshold\n\
+        2. Otsu-Threshold\n\
+        3. Sobel (Edge detection)\n\
+        4. RGB-H-CbCr (Skin detection)\n\
+        5. All\n\
+        0. Back to Home\n";
+
+        cin>>ans;
+
+        if(ans==1){
+            printMat("Before",img);
+            printMat("128",threshold(img));
+        }else if(ans==2){
+            printMat("Before",img);
+            printMat("Otsu",thresholdOtsu(img));
+        }else if(ans==3){
+            printMat("Before",img);
+            printMat("Sobel",sobel());
+        }else if(ans==4){
+            printMat("Before",img);
+            //img = rgbHCbCr(img);
+            printMat("RGB-H-CbCr",img);
+        }else if(ans==5){
+            printMat("Before",img);
+            printMat("128",threshold(img));
+            printMat("Otsu",thresholdOtsu(img));
+            printMat("Sobel",sobel());
+            //printMat("RGB-H-CbCr",img);
+        }else{
+            cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
+        }
+        waitKey();
+    }while(ans!=0);
+    img.release();
+}
+
+void negativeImage(){
+    Mat img = imread("picture/1.png");
+    printMat("Before",img);
+    printMat("After",negative(img));
+    waitKey();
+    img.release();
+}
+
+void changeContrast(){
+    Mat img = imread("picture/3.jpg");
+    printMat("Before",img);
+    printMat("After",contrast(img));
+    waitKey();
+    img.release();
+}
+
+void cropping(){
+    int ans;
+    Mat img,object;
+    img = imread("picture/4.jpg");
+    object = imread("picture/rya.jpg",0);
+    do{
+        cout<<"What do you want?\n\
+        1. Crop with Silhouette\n\
+        2. Pixrl Subtract\n\
+        3. Crop Size with Threshold\n\
+        4. All\n\
+        0. Back to Home\n";
+
+        cin>>ans;
+
+        if(ans==1){
+            printMat("Before",img);
+            printMat("Object",object);
+            printMat("Crop Silhouette",cropSilhouette(img,object));
+        }else if(ans==2){
+            printMat("Before",img);
+            printMat("Object",object);
+            printMat("Crop Substract",cropSubtract(img,object));
+        }else if(ans==3){
+            printMat("Before",img);
+            printMat("Object",object);
+            printMat("Crop Threshold",cropThreshold(cropSilhouette(img,object),0));
+        }else if(ans==4){
+            printMat("Before",img);
+            printMat("Object",object);
+            printMat("Crop Silhouette",cropSilhouette(img,object));
+            printMat("Crop Substract",cropSubtract(img,object));
+            printMat("Crop Threshold",cropThreshold(cropSilhouette(img,object),0));
+        }else{
+            cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
+        }
+        waitKey();
+    }while(ans!=0);
+
+    img.release();
+    object.release();
+}
+
 int main(){
-    Mat img,img2;
     int answer;
     do{
         cout<<"What do you want?\n\
@@ -32,55 +131,18 @@ int main(){
         cin>>answer;
 
         if(answer==1){
-            img = imread("picture/1.png");
-            img2 = img.clone();
-            printMat("Before",img);
-
-            img = threshold(img);
-            printMat("128",img);
-
-            img2 = thresholdOtsu(img2);
-            printMat("Otsu",img2);
-
-            printMat("Sobel",sobel());
+            faceDetection();
         }else if(answer==2){
-            img = imread("picture/1.png");
-            printMat("Before",img);
-
-            img = negative(img);
-            printMat("After",img);
+            negativeImage();
         }else if(answer==3){
-            img = imread("picture/3.jpg");
-            printMat("Before",img);
-
-            img = contrast(img);
-            printMat("After",img);
+            changeContrast();
         }else if(answer==4){
-            Mat object = imread("picture/rya.jpg",0);
-            img = imread("picture/4.jpg");
-            img2 = img.clone();
-            Mat img3;
-            printMat("Before",img);
-
-            img = cropSilhouette(img,object);
-            printMat("Crop Silhouette",img);
-            img3 = img.clone();
-
-            img2 = cropSubtract(img2,object);
-            printMat("Crop Substract",img2);
-
-            printMat("Object",object);
-
-            img3 = cropThreshold(img3,0);
-            printMat("Crop Threshold",img3);
+           cropping();
         }else{
             cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
 
         }
         cout<<"Thank you"<<endl;
-        img.release();
-        img2.release();
-        waitKey();
     }while (answer!=0);
     return 0;
 }
