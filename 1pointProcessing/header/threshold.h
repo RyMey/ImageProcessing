@@ -1,4 +1,3 @@
-
 Mat thresholdOtsu(Mat source){
     int histogram[256];
     for(int i=0; i<256; i++) histogram[i] = 0;
@@ -9,7 +8,10 @@ Mat thresholdOtsu(Mat source){
     int th=0;
 
     Mat result;
-    cvtColor(source,result,CV_BGR2GRAY);
+    if(source.channels()==1)
+        result = source.clone();
+    else
+        cvtColor(source,result,CV_BGR2GRAY);
     int width = result.size().width;
     int height = result.size().height;
     int N = width*height;
@@ -59,7 +61,10 @@ Mat thresholdOtsu(Mat source){
 
 Mat threshold(Mat source){
     Mat result;
-    cvtColor(source,result,CV_BGR2GRAY);
+    if(source.channels()==1)
+        result = source.clone();
+    else
+        cvtColor(source,result,CV_BGR2GRAY);
     int width = result.size().width;
     int height = result.size().height;
     for(int i=0;i<height;i++){

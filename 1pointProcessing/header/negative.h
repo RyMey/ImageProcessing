@@ -1,6 +1,10 @@
 Mat negative(Mat source){
     Mat result;
-    cvtColor(source,result,CV_BGR2GRAY);
+    if(source.channels()==1)
+        result = source.clone();
+    else
+        cvtColor(source,result,CV_BGR2GRAY);
+
     int width = result.size().width;
     int height = result.size().height;
 
