@@ -16,6 +16,7 @@ using namespace cv;
 #include "header/threshold.h"
 #include "header/crop.h"
 #include "header/sobel.h"
+#include "header/rgbhcbcr.h"
 
 void faceDetection(){
     int ans;
@@ -43,14 +44,15 @@ void faceDetection(){
             printMat("Sobel",sobel());
         }else if(ans==4){
             printMat("Before",img);
-            //img = rgbHCbCr(img);
-            printMat("RGB-H-CbCr",img);
+            printMat("RGB-H-CbCr",GetSkin(img));
         }else if(ans==5){
             printMat("Before",img);
             printMat("128",threshold(img));
             printMat("Otsu",thresholdOtsu(img));
             printMat("Sobel",sobel());
-            //printMat("RGB-H-CbCr",img);
+            printMat("RGB-H-CbCr",GetSkin(img));
+        }else if(ans==0){
+            break;
         }else{
             cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
         }
@@ -108,6 +110,8 @@ void cropping(){
             printMat("Crop Silhouette",cropSilhouette(img,object));
             printMat("Crop Substract",cropSubtract(img,object));
             printMat("Crop Threshold",cropThreshold(cropSilhouette(img,object),0));
+        }else if(ans==0){
+            break;
         }else{
             cout<<"Sorry, your answer in not in our list. Please select again."<<endl;
         }
