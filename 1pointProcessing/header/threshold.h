@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 Mat thresholdOtsu(Mat source){
     int histogram[256];
     for(int i=0; i<256; i++) histogram[i] = 0;
@@ -58,11 +64,6 @@ Mat thresholdOtsu(Mat source){
     }
     return result;
 }
-/*
-    Rya Meyvriska
-    G64164008
-    Ilmu Komputer IPB
-*/
 
 Mat threshold(Mat source){
     Mat result;

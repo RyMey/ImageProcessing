@@ -26,8 +26,6 @@ Mat sobel(){
     int width = source.size().width;
     int height = source.size().height;
 
-    cout<<(int)source.at<uchar>(0,0);
-
     for(int i=1; i<height-1; i++){
             for(int j=1; j<width-1; j++){
                 gx = xG(source, j, i);
