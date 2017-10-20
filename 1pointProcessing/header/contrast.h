@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 Mat contrast(Mat source){
     Mat result;
     result = source.clone();

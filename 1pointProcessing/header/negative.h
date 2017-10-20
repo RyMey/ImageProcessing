@@ -1,3 +1,8 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
 Mat negative(Mat source){
     Mat result;
     if(source.channels()==1)

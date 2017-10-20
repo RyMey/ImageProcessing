@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 Mat cropSilhouette(Mat source,Mat object){
     Mat result = source.clone();
     int width = source.size().width;

@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 #include <iostream>
 #include <cv.h>
 #include <highgui.h>

@@ -58,6 +58,11 @@ Mat thresholdOtsu(Mat source){
     }
     return result;
 }
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
 
 Mat threshold(Mat source){
     Mat result;

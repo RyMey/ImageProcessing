@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 int xG(Mat source, int x, int y){
     return ((int)source.at<uchar>(y-1, x-1) + 2*(int)source.at<uchar>(y, x-1) + (int)source.at<uchar>(y+1, x-1))
             - ((int)source.at<uchar>(y-1, x+1) + (int)source.at<uchar>(y+1, x+1) + 2*(int)source.at<uchar>(y, x+1));
@@ -14,7 +20,7 @@ Mat sobel(){
 //    if(source.channels()==1)
         result = source.clone();
 //    else
-//        cvtColor(source,result,CV_BGR2GRAY);
+//        cvtColor(source,result,CV_BGR2GRAY); //pixel from load and convert are different :(
 
     int gx,gy,sum;
     int width = source.size().width;
