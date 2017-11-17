@@ -36,7 +36,6 @@ Mat thresholdOtsu(Mat source){
         q1 += histogram[i];
         if (q1!=0){
             q2 = N-q1;
-
             if (q2 == 0)
                 break;
 
