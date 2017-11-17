@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 //references : https://en.wikipedia.org/wiki/Histogram_equalization
 Mat equalizeImage(Mat &image) {
     // alokasi memori untuk menyimpan tabel frekuensi dengan index 0-255

@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 // helper method untuk menampilkan window
 void showWindow(const String &name, const Mat &content) {
     namedWindow(name, CV_WINDOW_AUTOSIZE);

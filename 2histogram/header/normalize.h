@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 // menormalisasi data menjadi 0 - maxValue
 void normalize(int array[], int length, int maxValue) {
     int maxElement = findMaxElement(array, length);

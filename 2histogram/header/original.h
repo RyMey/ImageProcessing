@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 //membuat histogram from array
 Mat originalHistogram(Mat &image) {
     // alokasi memori untuk menyimpan tabel frekuensi dengan index 0-255

@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 Mat openCvEqualizeImage(Mat &image) {
     Mat newImage;
     equalizeHist(image, newImage);

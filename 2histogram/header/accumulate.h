@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 // mengubah isi array menjadi akumulasi nilai-nilai sebelum i
 void transformToAccumulatedFrequency(int frequencyTable[], int length) {
     for (int i = 1; i < length; i++) {

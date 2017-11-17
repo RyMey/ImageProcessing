@@ -1,3 +1,9 @@
+/*
+    Rya Meyvriska
+    G64164008
+    Ilmu Komputer IPB
+*/
+
 //p=1 manhattan, p=2 euclidea
 double minkowskiDistance(Mat &image1, Mat &image2, int p) {
     int frequencyTable1[256] = {0};
